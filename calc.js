@@ -1,11 +1,40 @@
-//alert("Hola mundo hermoso y maravilloso");
+const buttons = document.getElementById("btns");
+const resultado = document.getElementById("resultado");
 
-function show() {
-  let numero1 = parseInt(document.getElementById("numero1").value);
-  let numero2 = parseInt(document.getElementById("numero2").value);
+buttons.addEventListener("click", operar);
 
-  let resultado = numero1 + numero2;
+function operar(e) {
+  // Check that a button was clicked
+  if (e.target.tagName !== "BUTTON") return;
 
-  let objResultado = document.getElementById("resultado");
-  objResultado.innerHTML = resultado;
+  const numero1 = parseFloat(document.getElementById("numero1").value);
+  const numero2 = parseFloat(document.getElementById("numero2").value);
+
+  let res;
+
+  switch (e.target.id) {
+    case "suma":
+      res = numero1 + numero2;
+      break;
+
+    case "resta":
+      res = numero1 - numero2;
+      break;
+
+    case "multiplica":
+      res = numero1 * numero2;
+      break;
+
+    case "divide":
+      if (numero2 === 0) {
+        res = "No se puede dividir por 0";
+      } else {
+        res = numero1 / numero2;
+      }
+      break;
+    default:
+     alert("Funcionalidad en progreso");
+  }
+
+  resultado.textContent = res;
 }
